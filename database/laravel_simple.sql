@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 09, 2024 at 09:34 AM
+-- Generation Time: Jan 14, 2024 at 08:18 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -64,9 +64,10 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(3, 'ALAUDDIN quasemi', NULL, NULL),
+(3, 'only alauddin', NULL, '2024-01-13 21:39:43'),
 (4, 'bag', '2024-01-04 05:14:37', '2024-01-04 05:14:37'),
-(5, 'shoe', '2024-01-04 05:16:58', '2024-01-04 05:16:58');
+(5, 'shoe', '2024-01-04 05:16:58', '2024-01-04 05:16:58'),
+(6, 'Xinxian', '2024-01-13 04:09:13', '2024-01-13 04:09:13');
 
 -- --------------------------------------------------------
 
@@ -189,7 +190,8 @@ CREATE TABLE `products` (
 INSERT INTO `products` (`id`, `name`, `desc`, `price`, `category_id`, `created_at`, `updated_at`) VALUES
 (1, 'helw', 'asdasdasd', 420.00, 4, '2024-01-04 06:52:48', '2024-01-04 06:52:48'),
 (2, 'Tv', 'asdadsasdasdasd', 1500.00, 5, NULL, NULL),
-(3, 'ALAUDDIN quasemi', 'asdasda', 420.00, 4, NULL, NULL);
+(3, 'ALAUDDIN quasemi', 'asdasda', 420.00, 4, NULL, NULL),
+(4, 'New Product', 'lorem ipsum hello mama', 1500.00, 6, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -293,7 +295,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `editors`
@@ -323,7 +325,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`

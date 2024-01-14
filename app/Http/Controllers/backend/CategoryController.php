@@ -32,7 +32,7 @@ class CategoryController extends Controller
         print_r($data); //check if data is getting
 
         if(Category::insert($data)){
-            return redirect('/product')->with('msg' , 'successfully Category Added');
+            return redirect('/category')->with('msg' , 'successfully Category Added');
         }
 
         // DB::table('categories')->insert($data); // connect with db directly without model
@@ -47,14 +47,36 @@ class CategoryController extends Controller
 
     public function edit($id)
     {
-
+        $contact = Category::find($id);
+        $data['single'] = $contact; 
+        return view('backend/category/edit' , $data);   
     }
 
 
 
-    public function update(Request $request, string $id)
+    public function update(Request $req, $id)
     {
-        //
+        $category = Category::find($id);
+
+        // $messages = [
+        //     'name.required' => 'Naam koi ??',
+        //     'subject.required' => 'Subject den vai please',
+        //     'subject.min' => 'Subject er length barao',
+        // ] ;
+
+        $validate = $req->validate([
+            'name' => 'required|min:4|max:255',
+            // 'email' => 'email',
+        ] );
+
+        if ($validate) {
+            $data = [
+                'name' => $req->name,
+            ];
+            // print_r($request) ;
+            $category->update($data);
+            return redirect('/category')->with('msg' , 'Your data has updated') ;
+        }
     }
 
 

@@ -41,7 +41,7 @@
                         <td>{{$item['name']}}</td>
                         <td> 
                         <a href="category/delete/{{$item['id']}}"> <button class="btn btn-danger">delete</button>  </a>
-                        <button class="btn btn-warning"> Edit </button> 
+                        <button class="btn btn-warning"> <a href="category/edit/{{$item['id']}}"> Edit </a> </button> 
                         </td>
 
                     </tr>

@@ -44,14 +44,12 @@
                         <td>{{$item['name']}}</td>
                         <td>{{$item['desc']}}</td>
                         <td>{{$item['price']}}</td>
-                        <td>{{$item['category_id']}}</td>
+                        <td>{{$item->category->name}}</td>
                         <td> 
                         <a href="category/delete/{{$item['id']}}"> <button class="btn btn-danger">delete</button>  </a>
                         <button class="btn btn-warning"> Edit </button> 
                         </td>
-
                     </tr>
-                    
                     @endforeach
                 </tbody>
               </table>
