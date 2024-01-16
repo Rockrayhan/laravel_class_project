@@ -25,31 +25,40 @@ class ProductController extends Controller
      */
     public function create()
     {
-       $data['cats'] =  Category::all();
+        $data['cats'] =  Category::all();
         return view('backend.product.create', $data);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+
     public function store(Request $request)
     {
-        $data = ['name' => $request->name ,
-                'desc' => $request->desc,
+
+        // left side = input field | right side = rules 
+        // $validate = $request->validate([
+        //     'name' => 'required | min:3',
+        //     'desc' => 'required | min:6',
+        //     'price' => 'required | numeric',
+        //     'category' => 'required',
+        //     'photo' => 'mimes:jpg,jpeg,png',
+        // ]);
+
+        // if ($validate) {
+            // left side = db field | right side = input field
+            $data = [
+                'name' => $request->name,
+                'description' => $request->desc,
                 'price' => $request->price,
                 'category_id' => $request->category,
+            ];
+            print_r($data); //check if data is getting
 
-    ];
-        print_r($data); //check if data is getting
-
-        if(Product::insert($data)){
-            return redirect('/product')->with('msg' , 'successfully Product Added');
-        }
+            if (Product::insert($data)) {
+                return redirect('/product')->with('msg', 'successfully Product Added');
+            }
+        // }
     }
 
-    /**
-     * Display the specified resource.
-     */
+
     public function show(string $id)
     {
         //
@@ -60,7 +69,6 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        
     }
 
     /**

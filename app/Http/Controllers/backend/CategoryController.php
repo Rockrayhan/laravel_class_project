@@ -58,16 +58,16 @@ class CategoryController extends Controller
     {
         $category = Category::find($id);
 
-        // $messages = [
-        //     'name.required' => 'Naam koi ??',
-        //     'subject.required' => 'Subject den vai please',
-        //     'subject.min' => 'Subject er length barao',
-        // ] ;
+        $messages = [
+            'name.required' => 'Naam koi ??',
+            'subject.required' => 'Subject den vai please',
+            'subject.min' => 'Subject er length barao',
+        ] ;
 
         $validate = $req->validate([
             'name' => 'required|min:4|max:255',
             // 'email' => 'email',
-        ] );
+        ], $messages );
 
         if ($validate) {
             $data = [

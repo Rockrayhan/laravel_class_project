@@ -22,7 +22,7 @@
                 <div class="row mb-3">
                   <label for="inputText" class="col-sm-2 col-form-label">Category Name:</label>
                   <div class="col-sm-10">
-                    <input type="text" name="name" class="form-control" value="{{ old('subject') }}">
+                    <input type="text" name="name" class="form-control" value="{{ $single['name'] }}">
                   </div>
                 </div>
                 <div class="d-flex justify-content-center">

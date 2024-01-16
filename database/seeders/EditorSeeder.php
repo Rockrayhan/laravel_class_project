@@ -17,7 +17,7 @@ class EditorSeeder extends Seeder
         DB::table('editors')->insert([
             'name' => 'editor',
             'email' => 'editor@gmail.com',
-            'password' => Hash::make('password'),
+            'password' => Hash::make('editor123'),
             'status' => '1',
         ]);
     }
