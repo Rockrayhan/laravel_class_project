@@ -34,28 +34,36 @@ class ProductController extends Controller
     {
 
         // left side = input field | right side = rules 
-        // $validate = $request->validate([
-        //     'name' => 'required | min:3',
-        //     'desc' => 'required | min:6',
-        //     'price' => 'required | numeric',
-        //     'category' => 'required',
-        //     'photo' => 'mimes:jpg,jpeg,png',
-        // ]);
+        $validate = $request->validate([
+            'name' => 'required | min:3',
+            'desc' => 'required | min:6',
+            'price' => 'required | numeric',
+            'category' => 'required',
+            'photo' => 'mimes:jpg,jpeg,png',
+        ]);
 
-        // if ($validate) {
+        $filename = time(). '.' . $request->photo->extension() ; // to get file name with extension
+        // dd($request->all()) ;
+        
+        if ($validate) {
             // left side = db field | right side = input field
             $data = [
                 'name' => $request->name,
                 'description' => $request->desc,
                 'price' => $request->price,
                 'category_id' => $request->category,
+                'availibility'=>$request->available,
+                'tags' => $request->tags,
+                'image' => $filename,
             ];
-            print_r($data); //check if data is getting
+            // print_r($data); //check if data is getting
 
-            if (Product::insert($data)) {
+            $model = new Product() ;
+            if ($model->create($data)) {
+                $request->photo->move(public_path('images'), $filename);
                 return redirect('/product')->with('msg', 'successfully Product Added');
             }
-        // }
+        }
     }
 
 
@@ -69,6 +77,7 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
+
     }
 
     /**
@@ -84,6 +93,8 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $product = Product::find($id) ;
+        $product->delete();
+        return redirect('/product')->with('msg' , 'deleted successfully') ;
     }
 }
