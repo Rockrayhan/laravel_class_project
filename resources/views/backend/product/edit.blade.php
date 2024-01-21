@@ -96,7 +96,7 @@
 
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" id="gridCheck1" name="tags[]"
-                                                value="easy" @checked(in_array('easy' , $product['tags']) =='easy')>
+                                                value="easy" @checked(old('tags', in_array('easy' , $product['tags']) =='easy'))>
                                             <label class="form-check-label" for="gridCheck1">
                                                 Easy
                                             </label>
@@ -104,7 +104,7 @@
 
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" id="gridCheck2" name="tags[]"
-                                                value="colors" @checked(in_array('colors' , $product['tags']) =='colors')>
+                                                value="colors" @checked(old('tags', in_array('colors' , $product['tags']) =='colors'))>
                                             <label class="form-check-label" for="gridCheck2">
                                                 Colors
                                             </label>
@@ -112,7 +112,7 @@
 
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" id="gridCheck2" name="tags[]"
-                                                value="richman" @checked(in_array('richman' , $product['tags']) =='richman')>
+                                                value="richman" @checked(old('tags', in_array('richman' , $product['tags']) =='richman'))>
                                             <label class="form-check-label" for="gridCheck2">
                                                 Richman
                                             </label>
@@ -120,7 +120,7 @@
 
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" id="gridCheck2" name="tags[]"
-                                                value="odc" @checked(in_array('odc' , $product['tags']) =='odc')>
+                                                value="odc" @checked(old('tags', in_array('odc' , $product['tags']) =='odc'))>
                                             <label class="form-check-label" for="gridCheck2">
                                                 O_D_C
                                             </label>
@@ -130,13 +130,17 @@
                                 </div>
 
                                 {{-- Image --}}
+                              <div class="d-flex gap-5">
                                 <div class="row mb-3">
                                     <label for="inputNumber" class="col-sm-2 col-form-label">Image Upload</label>
                                     <div class="col-sm-10">
                                         <input class="form-control" name="photo" type="file" id="formFile">
                                     </div>
                                 </div>
-
+                                <div>
+                                    <img src="{{asset('images/'.$product['image'])}}" height="50px" width="50px" alt="">
+                                </div>
+                              </div>
 
                                 <div class="d-flex justify-content-center">
                                     <button type="submit" class="btn btn-primary px-5 p-2">Update</button>

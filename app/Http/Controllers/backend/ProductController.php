@@ -82,13 +82,48 @@ class ProductController extends Controller
         return view('backend.product.edit', compact('product', 'cats'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+
+
     public function update(Request $request, string $id)
     {
-        //
-    }
+        $product = Product::find($id);
+        // left side = input field | right side = rules 
+        $validate = $request->validate([
+            'name' => 'required | min:3',
+            'desc' => 'required | min:6 | max:512',
+            'price' => 'required | numeric',
+            'category' => 'required',
+            'photo' => 'mimes:jpg,jpeg,png',
+        ]);
+
+        $filename = time(). '.' . $request->photo->extension() ; // to get file name with extension
+        // dd($request->all()) ;
+        
+        if ($validate) {
+            // left side = db field | right side = input field
+            $data = [
+                'name' => $request->name,
+                'description' => $request->desc,
+                'price' => $request->price,
+                'category_id' => $request->category,
+                'availibility'=>$request->available,
+                'tags' => $request->tags,
+                'image' => $filename,
+            ];
+            // print_r($data); //check if data is getting
+
+            // $model = new Product() ;
+            // if ($model->update($data)) {
+            //     $request->photo->move(public_path('images'), $filename);
+            //     return redirect('/product')->with('msg', 'successfully Product Updated');
+            // }
+
+            if ($product->update($data)) {
+                $request->photo->move(public_path('images'), $filename);
+                return redirect('/product')->with('msg', 'successfully Product Added');
+            }
+        }
+    } 
 
     /**
      * Remove the specified resource from storage.
