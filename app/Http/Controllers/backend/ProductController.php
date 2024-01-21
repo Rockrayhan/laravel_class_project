@@ -36,7 +36,7 @@ class ProductController extends Controller
         // left side = input field | right side = rules 
         $validate = $request->validate([
             'name' => 'required | min:3',
-            'desc' => 'required | min:6',
+            'desc' => 'required | min:6 | max:512',
             'price' => 'required | numeric',
             'category' => 'required',
             'photo' => 'mimes:jpg,jpeg,png',
@@ -77,7 +77,9 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-
+        $product = Product::find($id);
+        $cats = Category::all();
+        return view('backend.product.edit', compact('product', 'cats'));
     }
 
     /**
@@ -95,6 +97,6 @@ class ProductController extends Controller
     {
         $product = Product::find($id) ;
         $product->delete();
-        return redirect('/product')->with('msg' , 'deleted successfully') ;
+        return redirect('/product')->with('delete_msg' , 'deleted successfully') ;
     }
 }

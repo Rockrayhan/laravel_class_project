@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Product extends Model
 {
     use HasFactory;
-    protected $fillable = ['name', 'description', 'price', 'category_id' , 'tags', 'image', 'availibility'  ];
+    protected $fillable = ['name', 'description', 'price', 'category_id' , 'tags', 'image' , 'availibility'  ];
 
     public function setTagsAttribute($value)
     {
@@ -19,6 +19,7 @@ class Product extends Model
     public function getTagsAttribute($value)
     {
         return $this->attributes['tags'] = json_decode($value);
+        // return is_array($value) ? $value : json_decode($value, true);
     }
 
     public function category(): BelongsTo

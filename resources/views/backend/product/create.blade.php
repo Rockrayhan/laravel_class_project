@@ -4,7 +4,7 @@
     <main id="main" class="main">
 
         <div class="pagetitle">
-            <h1> Insert Category </h1>
+            <h1> Insert Product </h1>
 
         </div><!-- End Page Title -->
 
@@ -41,7 +41,7 @@
                                 <div class="row mb-3">
                                     <label for="inputText" class="col-sm-2 col-form-label">Description:</label>
                                     <div class="col-sm-10">
-                                        <textarea name="desc" cols="50" rows="5"> {{old('desc')}} </textarea>
+                                        <textarea name="desc" cols="50" rows="5" class="{{-- tinymce-editor --}}"> {{old('desc')}} </textarea>
                                     </div>
                                 </div>
 

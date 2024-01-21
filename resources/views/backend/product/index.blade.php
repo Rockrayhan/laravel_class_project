@@ -45,6 +45,12 @@
                                 {{ session('msg') }}
                             </div>
                         @endif
+                            {{-- session delete --}}
+                            @if (session('delete_msg'))
+                            <div class="alert alert-danger">
+                                {{ session('delete_msg') }}
+                            </div>
+                        @endif
 
 
 
@@ -67,19 +73,22 @@
                                         <tr>
                                             <td> {{ $item['id'] }} </td>
                                             <td>{{ $item['name'] }}</td>
-                                            <td>{{ $item['description'] }}</td>
+                                            <td> {!! $item['description'] !!} </td>
                                             <td>{{ $item['price'] }}</td>
                                             <td>  <img src="{{asset('images/'.$item['image'])}}" height="50px" width="50px" alt="">  </td>
                                             <td>{{ $item->category->name }}</td>
                                             {{-- <td> {{$item['tags']}} </td> --}}
                                             <td>
-                                              {{ implode(",", $item->tags) ?? 'No data' }}
+                                              {{-- {{ implode(",", $item->tags) ?? 'No data' }} --}}
+                                              @foreach ($item->tags as $tag)                                              
+                                                <li> {{$tag}} </li>
+                                              @endforeach
                                           </td>
                                           
                                             <td>
-                                                <a href="product/delete/{{ $item['id'] }}"> <button
+                                                <a onclick="return confirm('are you sure ??')" href="{{route('product.delete', $item['id'])}}"> <button
                                                         class="btn btn-danger">delete</button> </a>
-                                                <button class="btn btn-warning"> Edit </button>
+                                                <a href="{{route('product.edit', $item['id'])}}"> <button class="btn btn-warning"> Edit </button> </a>
                                             </td>
                                         </tr>
                                     @endforeach
