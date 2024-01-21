@@ -61,9 +61,9 @@
                                     <div class="col-sm-10">
                                         <select name="category" id="">
                                             <option value=""> select a category </option>
-                                            @foreach ($cats as $item)
-                                                <option value="{{ $item['id'] }}"  {{old('category')== $item['id'] ? 'selected' : ''}}> {{ $item['name'] }}  </option>
-                                            @endforeach
+@foreach ($cats as $item)
+    <option value="{{$item['id']}}" @selected( old('category', $product['category_id'] == $item['id']) )> {{$item['name']}} </option>
+@endforeach
                                         </select>
                                     </div>
                                 </div>
