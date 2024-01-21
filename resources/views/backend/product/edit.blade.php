@@ -67,20 +67,21 @@
                                         </select>
                                     </div>
                                 </div>
+
                                 {{-- ===== radios ======= --}}
                                 <fieldset class="row mb-3">
                                     <legend class="col-form-label col-sm-2 pt-0">Product Status</legend>
                                     <div class="col-sm-10">
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="available" id="gridRadios1"
-                                                value="1" {{old('available') ? 'checked' : ''}}>
+                                                value="1" @checked(old('available', $product['availibility'])==1) >
                                             <label class="form-check-label" for="gridRadios1">
                                                 Available
                                             </label>
                                         </div>
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="available" id="gridRadios2"
-                                                value="0" {{old('available') ? '' : 'checked'}}>
+                                                value="0" @checked(old('available', $product['availibility'])==0)>
                                             <label class="form-check-label" for="gridRadios2">
                                                 Not Available
                                             </label>
@@ -95,7 +96,7 @@
 
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" id="gridCheck1" name="tags[]"
-                                                value="easy" {{in_array('easy', old('tags', [])) ? 'checked': '' }}>
+                                                value="easy" @checked(in_array('easy' , $product['tags']) =='easy')>
                                             <label class="form-check-label" for="gridCheck1">
                                                 Easy
                                             </label>
@@ -103,7 +104,7 @@
 
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" id="gridCheck2" name="tags[]"
-                                                value="colors" {{in_array('colors', old('tags', [])) ? 'checked': '' }}>
+                                                value="colors" @checked(in_array('colors' , $product['tags']) =='colors')>
                                             <label class="form-check-label" for="gridCheck2">
                                                 Colors
                                             </label>
@@ -111,7 +112,7 @@
 
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" id="gridCheck2" name="tags[]"
-                                                value="richman" {{in_array('richman', old('tags', [])) ? 'checked': '' }}>
+                                                value="richman" @checked(in_array('richman' , $product['tags']) =='richman')>
                                             <label class="form-check-label" for="gridCheck2">
                                                 Richman
                                             </label>
@@ -119,7 +120,7 @@
 
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" id="gridCheck2" name="tags[]"
-                                                value="odc" {{in_array('odc', old('tags', [])) ? 'checked': '' }}>
+                                                value="odc" @checked(in_array('odc' , $product['tags']) =='odc')>
                                             <label class="form-check-label" for="gridCheck2">
                                                 O_D_C
                                             </label>

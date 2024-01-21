@@ -18,8 +18,8 @@ class Product extends Model
 
     public function getTagsAttribute($value)
     {
-        return $this->attributes['tags'] = json_decode($value);
-        // return is_array($value) ? $value : json_decode($value, true);
+        // return $this->attributes['tags'] = json_decode($value);
+        return is_array($value) ? $value : json_decode($value, true);
     }
 
     public function category(): BelongsTo
