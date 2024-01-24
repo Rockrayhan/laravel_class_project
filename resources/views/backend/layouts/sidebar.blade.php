@@ -27,6 +27,11 @@
               <i class="bi bi-circle"></i><span> Insert Products </span>
             </a>
           </li>
+          <li>
+            <a href="{{URL('findProducts')}}">
+              <i class="bi bi-circle"></i><span> Find Products </span>
+            </a>
+          </li>
         </ul>
       </li>
       

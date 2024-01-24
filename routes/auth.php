@@ -11,6 +11,7 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\backend\CategoryController;
 use App\Http\Controllers\backend\ProductController;
+use App\Http\Controllers\backend\SearchController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
@@ -64,6 +65,8 @@ Route::middleware('auth')->group(function () {
                 // product
     Route::get('product', [ProductController::class, 'index'])
                 ->name('product/index');
+    Route::get('findProducts', [SearchController::class, 'search']) ;
+                
 
     Route::get('product/create', [ProductController::class, 'create'])
                 ->name('product/create');
