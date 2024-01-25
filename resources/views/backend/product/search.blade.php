@@ -35,6 +35,9 @@
                 <input type="submit" name="submit" value="Search">
             </form>
             <!-- Default Table -->
+
+            
+            @if (count($products)>0)
             <table class="table">
               <thead>
                 <tr>
@@ -74,6 +77,9 @@
                 @endforeach
             </tbody>
             </table>
+            @else
+            <h1> No data Found </h1>
+            @endif
             <!-- End Default Table Example -->
           </div>
         </div>
