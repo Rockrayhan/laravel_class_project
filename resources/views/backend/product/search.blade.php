@@ -24,6 +24,15 @@
 
             <form action="">
                 <input type="text" name="search" placeholder="Search Your Product">
+
+                <select name="cat">
+                  <option value=""> selcet one </option>
+                  <option value="1"> Shirt</option>
+                  <option value="2"> pant </option>
+                  <option value="3"> Shoe </option>
+                  <option value="4"> Belt </option>
+                </select>
+                <input type="submit" name="submit" value="Search">
             </form>
             <!-- Default Table -->
             <table class="table">
