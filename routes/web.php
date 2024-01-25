@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+
 use App\Http\Controllers\EditorController;
+use App\Http\Controllers\frontend\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -46,5 +48,12 @@ Route::get('admin/dashboard', [AdminController::class,'dashboard'])->name('admin
 Route::get('editor/login', [EditorController::class,'login']) ;
 Route::post('editor/login', [EditorController::class,'store'])->name('editorLogin') ;
 Route::get('editor/dashboard', [EditorController::class,'dashboard'])->name('editor.dashboard');
+
+
+// cart
+Route::get('cart', [ProductController::class, 'cart'])->name('cart');
+Route::get('add-to-cart/{id}', [ProductController::class, 'addToCart'])->name('add.to.cart');
+Route::patch('update-cart', [ProductController::class, 'update'])->name('update.cart');
+Route::delete('remove-from-cart', [ProductController::class, 'remove'])->name('remove.from.cart');
 
 require __DIR__.'/auth.php';

@@ -41,17 +41,23 @@
 
                             {{-- session msg --}}
                             @if (session('msg'))
-                            <div class="alert alert-success">
-                                {{ session('msg') }}
-                            </div>
-                        @endif
+                                <div class="alert alert-success">
+                                    {{ session('msg') }}
+                                </div>
+                            @endif
                             {{-- session delete --}}
                             @if (session('delete_msg'))
-                            <div class="alert alert-danger">
-                                {{ session('delete_msg') }}
-                            </div>
-                        @endif
+                                <div class="alert alert-danger">
+                                    {{ session('delete_msg') }}
+                                </div>
+                            @endif
 
+                            {{-- cart added session --}}
+                            @if (session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
 
 
                             <!-- Table with stripped rows -->
@@ -75,20 +81,28 @@
                                             <td>{{ $item['name'] }}</td>
                                             <td> {!! $item['description'] !!} </td>
                                             <td>{{ $item['price'] }}</td>
-                                            <td>  <img src="{{asset('images/'.$item['image'])}}" height="50px" width="50px" alt="">  </td>
+                                            <td> <img src="{{ asset('images/' . $item['image']) }}" height="50px"
+                                                    width="50px" alt=""> </td>
                                             <td>{{ $item->category->name }}</td>
                                             {{-- <td> {{$item['tags']}} </td> --}}
                                             <td>
-                                              {{-- {{ implode(",", $item->tags) ?? 'No data' }} --}}
-                                              @foreach ($item->tags as $tag)                                              
-                                                <li> {{$tag}} </li>
-                                              @endforeach
-                                          </td>
-                                          
+                                                {{-- {{ implode(",", $item->tags) ?? 'No data' }} --}}
+                                                @foreach ($item->tags as $tag)
+                                                    <li> {{ $tag }} </li>
+                                                @endforeach
+                                            </td>
+
                                             <td>
-                                                <a onclick="return confirm('are you sure ??')" href="{{route('product.delete', $item['id'])}}"> <button
+                                                <a onclick="return confirm('are you sure ??')"
+                                                    href="{{ route('product.delete', $item['id']) }}"> <button
                                                         class="btn btn-danger">delete</button> </a>
-                                                <a href="{{route('product.edit', $item['id'])}}"> <button class="btn btn-warning"> Edit </button> </a>
+                                                <a href="{{ route('product.edit', $item['id']) }}"> <button
+                                                        class="btn btn-warning"> Edit </button> </a>
+
+                                                <p class="btn-holder"><a href="{{ route('add.to.cart', $item->id) }}"
+                                                        class="btn btn-primary btn-block text-center" role="button">Add to
+                                                        cart</a> </p>
+
                                             </td>
                                         </tr>
                                     @endforeach
@@ -102,8 +116,6 @@
                 </div>
             </div>
         </section>
-
     </main>
-
 
 @endsection
