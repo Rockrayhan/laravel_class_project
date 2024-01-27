@@ -33,6 +33,26 @@ class BrandSeeder extends Seeder
                 'name' => 'LG V10 H800',
                 'logo' => 'https://dummyimage.com/200x300/000/fff&text=LG',
                 'description' => 'LG Brand',
+            ],
+            [
+                'name' => 'Samsung Galaxy',
+                'logo' => 'https://dummyimage.com/200x300/000/fff&text=Samsung',
+                'description' => 'Samsung Brand',
+            ],
+            [
+                'name' => 'Apple iPhone 12',
+                'logo' => 'https://dummyimage.com/200x300/000/fff&text=Iphone',
+                'description' => 'Apple Brand',
+            ],
+            [
+                'name' => 'Google Pixel 2 XL',
+                'logo' => 'https://dummyimage.com/200x300/000/fff&text=Google',
+                'description' => 'Google Pixel Brand',
+            ],
+            [
+                'name' => 'LG V10 H800',
+                'logo' => 'https://dummyimage.com/200x300/000/fff&text=LG',
+                'description' => 'LG Brand',
             ]
         ];
 

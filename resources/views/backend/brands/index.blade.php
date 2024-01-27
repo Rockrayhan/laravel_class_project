@@ -15,6 +15,12 @@
       </nav>
     </div><!-- End Page Title -->
 
+    @if ($message = Session::get('success'))
+    <div class="alert alert-danger">
+        <p>{{ $message }}</p>
+    </div>
+    @endif
+
     <section class="section">
       <div class="row">
         <div class="col-lg-12">
@@ -28,7 +34,7 @@
               <table class="table datatable">
                 <thead>
                   <tr>
-                    <th>ID</th>
+                    <th>SL</th>
                     <th>Name</th>
                     {{-- <th>Image</th> --}}
                     <th>Description</th>
@@ -36,18 +42,31 @@
                   </tr>
                 </thead>
                 <tbody>
+                    {{-- @php
+                    $sl = 1
+                @endphp --}}
                     @foreach ($brands as $item)
                         
                     <tr>
-                        <td> {{$item['id']}} </td>
+                        <td>{{ $brands->firstItem() + $loop->index }}</td>
+
+                        {{-- <td>{{$sl++}}</td> --}}
                         <td>{{$item['name']}}</td>
                         {{-- <td>{{$item['logo']}}</td> --}}
                         <td>{{$item['description']}}</td>
-                        <td> 
-                        <a href="category/delete/{{$item['id']}}"> <button class="btn btn-danger">delete</button>  </a>
-                        <button class="btn btn-warning"> <a href="category/edit/{{$item['id']}}"> Edit </a> </button> 
-                        <button class="btn btn-warning"> <a href="{{route('brands.show', $item['id'])}}"> Show </a> </button> 
-                        </td>
+                     <td>
+                        <form action="{{ route('brands.destroy',$item->id) }}" method="POST">
+   
+                            <a class="btn btn-info" href="{{ route('brands.show',$item['id']) }}">Show</a>
+            
+                            <a class="btn btn-primary" href="{{ route('brands.edit',$item->id) }}">Edit</a>
+           
+                            @csrf
+                            @method('DELETE')
+              
+                            <button onclick="return confirm('are you sure ?')" type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                     </td>
 
                     </tr>
                     

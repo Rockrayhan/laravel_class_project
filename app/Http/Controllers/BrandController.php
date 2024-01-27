@@ -12,10 +12,10 @@ class BrandController extends Controller
      */
     public function index()
     {
-        $brands = Brand::latest()->paginate(3);
+        $brands = Brand::latest()->paginate(5);
 
         return view('backend.brands.index', compact('brands'))
-            ->with('i', (request()->input('page', 1) - 1) * 3);
+            ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -63,6 +63,9 @@ class BrandController extends Controller
      */
     public function destroy(Brand $brand)
     {
-        //
+        $brand->delete();
+         
+        return redirect()->route('brands.index')
+                        ->with('success','Product deleted successfully');
     }
 }
