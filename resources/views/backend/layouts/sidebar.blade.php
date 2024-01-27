@@ -58,7 +58,29 @@
         </ul>
       </li>
       
-      <!-- Products End  -->
+      <!-- Categories End  -->
+
+      {{-- Brand start --}}
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#brand-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-layout-text-window-reverse"></i><span> Brands </span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="brand-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="brands">
+              <i class="bi bi-circle"></i><span>All Brand</span>
+            </a>
+          </li>
+          <li>
+            <a href="{{URL('category/create')}}">
+              <i class="bi bi-circle"></i><span> New Brand </span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      
+      <!-- Categories End  -->
 
 
       <li class="nav-item">
