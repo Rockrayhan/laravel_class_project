@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 21, 2024 at 08:19 AM
+-- Generation Time: Feb 03, 2024 at 07:15 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -45,6 +45,36 @@ CREATE TABLE `admins` (
 
 INSERT INTO `admins` (`id`, `name`, `email`, `email_verified_at`, `password`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'admin', 'admin@gmail.com', NULL, '$2y$12$g.Pbhk9f7vzM5NqvhADuo.vIXHM7/qVpyn9tneGeKG3LlrCBuD2dS', 1, NULL, '2024-01-16 06:37:05', '2024-01-16 06:37:05');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `brands`
+--
+
+CREATE TABLE `brands` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `logo` varchar(100) NOT NULL,
+  `description` varchar(225) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `brands`
+--
+
+INSERT INTO `brands` (`id`, `name`, `logo`, `description`, `created_at`, `updated_at`) VALUES
+(3, 'Google Pixel 2 XL', 'https://dummyimage.com/200x300/000/fff&text=Google', 'Google Pixel Brand', '2024-01-26 22:56:08', '2024-01-26 22:56:08'),
+(5, 'Samsung Galaxy', 'https://dummyimage.com/200x300/000/fff&text=Samsung', 'Samsung Brand', '2024-01-27 00:55:27', '2024-01-27 00:55:27'),
+(6, 'Apple iPhone 12', 'https://dummyimage.com/200x300/000/fff&text=Iphone', 'Apple Brand', '2024-01-27 00:55:27', '2024-01-27 00:55:27'),
+(7, 'Google Pixel 2 XL', 'https://dummyimage.com/200x300/000/fff&text=Google', 'Google Pixel Brand', '2024-01-27 00:55:27', '2024-01-27 00:55:27'),
+(8, 'LG V10 H800', 'https://dummyimage.com/200x300/000/fff&text=LG', 'LG Brand', '2024-01-27 00:55:27', '2024-01-27 00:55:27'),
+(9, 'Samsung Galaxy', 'https://dummyimage.com/200x300/000/fff&text=Samsung', 'Samsung Brand', '2024-01-27 00:55:27', '2024-01-27 00:55:27'),
+(10, 'Apple iPhone 12', 'https://dummyimage.com/200x300/000/fff&text=Iphone', 'Apple Brand', '2024-01-27 00:55:27', '2024-01-27 00:55:27'),
+(11, 'Google Pixel 2 XL', 'https://dummyimage.com/200x300/000/fff&text=Google', 'Google Pixel Brand', '2024-01-27 00:55:27', '2024-01-27 00:55:27'),
+(12, 'LG V10 H800', 'https://dummyimage.com/200x300/000/fff&text=LG', 'LG Brand', '2024-01-27 00:55:27', '2024-01-27 00:55:27');
 
 -- --------------------------------------------------------
 
@@ -127,7 +157,48 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (74, '2024_01_03_063027_create_categories_table', 1),
 (75, '2024_01_03_063242_create_products_table', 1),
 (76, '2024_01_09_033626_create_admins_table', 1),
-(77, '2024_01_09_063445_create_editors_table', 1);
+(77, '2024_01_09_063445_create_editors_table', 1),
+(78, '2024_01_27_042454_create_brands_table', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `order_number` varchar(191) NOT NULL,
+  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `sub_total` double(8,2) NOT NULL,
+  `shipping_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `coupon` double(8,2) DEFAULT NULL,
+  `total_amount` double(8,2) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `payment_method` enum('cod','paypal') NOT NULL DEFAULT 'cod',
+  `payment_status` enum('paid','unpaid') NOT NULL DEFAULT 'unpaid',
+  `status` enum('new','process','delivered','cancel') NOT NULL DEFAULT 'new',
+  `name` varchar(191) NOT NULL,
+  `email` varchar(191) NOT NULL,
+  `phone` varchar(191) NOT NULL,
+  `country` varchar(191) NOT NULL,
+  `post_code` varchar(191) DEFAULT NULL,
+  `address` text NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `order_number`, `user_id`, `sub_total`, `shipping_id`, `coupon`, `total_amount`, `quantity`, `payment_method`, `payment_status`, `status`, `name`, `email`, `phone`, `country`, `post_code`, `address`, `created_at`, `updated_at`) VALUES
+(9, 'ORD189', NULL, 1100.00, NULL, NULL, 1100.00, 1, 'cod', 'unpaid', 'new', 'ALAUDDIN', 'abc@gmail.com', '0155555', 'bd', NULL, 'jugatola', '2024-02-02 23:54:05', '2024-02-02 23:54:05'),
+(10, 'ORD183', NULL, 650.00, NULL, NULL, 650.00, 1, 'cod', 'unpaid', 'new', 'ALAUDDINss', 'helo@gelo.com', '1500000', 'bd', NULL, 'asdasd', '2024-02-02 23:56:36', '2024-02-02 23:56:36'),
+(11, 'ORD88', NULL, 650.00, NULL, NULL, 650.00, 1, 'cod', 'unpaid', 'new', 'ALAUDDINss', 'helo@gelo.com', '1500000', 'bd', NULL, 'asdasd', '2024-02-02 23:57:42', '2024-02-02 23:57:42'),
+(12, 'ORD331', NULL, 600.00, NULL, NULL, 600.00, 1, 'cod', 'unpaid', 'new', 'rojoni', 'helo@gelo.com', '1500000', 'bd', NULL, 'jugatola', '2024-02-02 23:58:32', '2024-02-02 23:58:32'),
+(13, 'ORD176', NULL, 750.00, NULL, NULL, 750.00, 1, 'cod', 'unpaid', 'new', 'rojoni', 'asdasd@sasd.com', '0158080', 'bd', NULL, 'jugatola', '2024-02-03 00:00:34', '2024-02-03 00:00:34'),
+(14, 'ORD362', NULL, 600.00, NULL, NULL, 500.00, 1, 'cod', 'unpaid', 'new', 'ALAUDDIN', 'helo@gelo.com', '0155555', 'bd', NULL, 'jugatola', '2024-02-03 00:04:59', '2024-02-03 00:04:59');
 
 -- --------------------------------------------------------
 
@@ -185,8 +256,9 @@ CREATE TABLE `products` (
 
 INSERT INTO `products` (`id`, `name`, `description`, `image`, `tags`, `price`, `category_id`, `availibility`, `created_at`, `updated_at`) VALUES
 (12, 'ALAUDDIN quasemi', 'asdasdasdsad', '1705733251.jpg', '[\"easy\",\"richman\",\"odc\"]', 450.00, 2, 1, '2024-01-20 00:47:31', '2024-01-20 00:47:31'),
-(17, 'ALAUDDINss', 'this is updated description', '1705821516.jpg', '[\"easy\",\"odc\"]', 500.00, 1, 1, '2024-01-20 22:28:54', '2024-01-21 01:18:36'),
-(18, 'ALAUDDIN quasemiasdsa', 'asdasdasdasd', '1705811814.jpg', '[\"colors\",\"richman\"]', 150.00, 1, 1, '2024-01-20 22:36:54', '2024-01-20 22:36:54');
+(17, 'ALAUDDINss', 'this is updated description', '1705822063.jpg', '[\"easy\",\"odc\"]', 500.00, 1, 1, '2024-01-20 22:28:54', '2024-01-21 01:27:43'),
+(18, 'ALAUDDIN quasemiasdsa', 'asdasdasdasd', '1705811814.jpg', '[\"colors\",\"richman\"]', 150.00, 1, 1, '2024-01-20 22:36:54', '2024-01-20 22:36:54'),
+(19, 'Skmei Watch', 'asdasdasd', '1706078998.jpg', '[\"colors\",\"richman\"]', 600.00, 4, 1, '2024-01-24 00:49:58', '2024-01-24 00:49:58');
 
 -- --------------------------------------------------------
 
@@ -224,6 +296,12 @@ ALTER TABLE `admins`
   ADD UNIQUE KEY `admins_email_unique` (`email`);
 
 --
+-- Indexes for table `brands`
+--
+ALTER TABLE `brands`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `categories`
 --
 ALTER TABLE `categories`
@@ -248,6 +326,15 @@ ALTER TABLE `failed_jobs`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `orders_order_number_unique` (`order_number`),
+  ADD KEY `orders_user_id_foreign` (`user_id`),
+  ADD KEY `orders_shipping_id_foreign` (`shipping_id`);
 
 --
 -- Indexes for table `password_reset_tokens`
@@ -287,6 +374,12 @@ ALTER TABLE `admins`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `brands`
+--
+ALTER TABLE `brands`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
@@ -308,7 +401,13 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -320,7 +419,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `users`

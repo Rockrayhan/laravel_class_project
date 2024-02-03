@@ -102,7 +102,7 @@
 
         <a href="/cart" class="btn btn-primary">
           <i class="fa fa-shopping-cart"></i> Cart
-          @php $totalProducts = count(session('cart')) @endphp
+          @php $totalProducts = count(session('cart') ?? []) @endphp
           <span class="badge badge-light">{{ $totalProducts }}</span>
       </a>
 

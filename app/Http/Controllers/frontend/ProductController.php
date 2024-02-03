@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -75,4 +76,32 @@ class ProductController extends Controller
             session()->flash('success', 'Product removed successfully');
         }
     }
+
+
+    public function checkout(){
+        return view('backend.checkout');
+    }
+
+
+    public function order(Request $request){
+        $order = new Order();
+        $order_data = $request->all();
+        $order_data['order_number'] = "ORD" . rand(5,500);
+        $order_data['quantity'] = 1 ;
+        $order_data['country'] = 'bd' ;
+        // print_r($order_data);
+        $order->create($order_data) ;
+        $request->session()->forget('cart');
+        return redirect('/product');
+        // print_r(session('cart'));
+
+    //     $carts = session('cart');
+    //     print_r($carts);
+    //     $order_data['coupon'] = '100';
+    //     $order_data['shipping_id'] = '4';
+    //     $order->fill($order_data);
+    }
+
+
+    
 }
